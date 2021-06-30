@@ -1,0 +1,17 @@
+@charset "EUC-KR";
+*{
+	padding:0;
+	margin:0;
+}
+body{
+	overflow:hidden;
+}
+.wrap{
+	display: flex;
+	justify-content: center;
+	overflow:hidden;
+}
+.title{
+	display:flex;
+	justify-content: space-around;
+}

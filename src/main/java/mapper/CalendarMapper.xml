@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.CalendarMapper">
+
+	<select id="selectbirth" resultType="memberlist"
+		parameterType="string">
+		select birth from stf_tb where stf_id = #{value}
+	</select>
+
+	<select id="selectBM" resultType="string">
+		select substr(birth,3,2) from stf_tb
+	</select>
+
+	<select id="selectBD" resultType="string">
+		select substr(birth,5,2) from stf_tb
+	</select>
+	
+	<select id="selectName" resultType="string">
+	select stf_nm from stf_tb
+	</select>
+</mapper>

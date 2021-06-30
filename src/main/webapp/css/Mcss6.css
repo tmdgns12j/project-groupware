@@ -1,0 +1,332 @@
+@charset "EUC-KR";
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family:"¸¼Àº°íµñ";
+}
+
+/* .header {
+	margin-top: 5px;
+	display: flex;
+	justify-content: space-between;
+	background-color: white;
+	align-items: center;
+	¼öÁ÷
+	height: 50px;
+}
+ */
+.leftheader {
+	display: flex;
+	width: 20%;
+	height: 100%;
+	justify-content: center;
+}
+
+.potal {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.potal:hover {
+	background-color: #dfdfdf;
+}
+
+.information {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.information:hover {
+	background-color: #dfdfdf;
+}
+
+.mail {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.apv {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.board {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.mail:hover {
+	background-color: #dfdfdf;
+}
+
+.apv:hover {
+	background-color: #dfdfdf;
+}
+.board:hover {
+	background-color: #dfdfdf;
+}
+
+
+
+
+.information:hover {
+	background-color: #dfdfdf;
+}
+
+.message {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.message:hover {
+	background-color: #dfdfdf;
+}
+
+
+.timeline {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.timeline:hover {
+	background-color: #dfdfdf;
+}
+
+.rightheader {
+	display: flex;
+	width: 60%;
+	height: 100%;
+}
+
+.blank {
+	width: 10%;
+	height: 100%;
+	display:flex;
+	align-items:center;
+	justify-content : flex-end;
+	text-align: right;
+	padding-right:10px;
+	font-size: 10px;
+}
+/* ------------------------*/
+.bodywrap {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+}
+
+.leftwrap {
+	width: 25%;
+	height: 100%;
+	background-color: #e3edf6;
+}
+
+.rightwrap {
+	width: 25%;
+}
+/* ------------------------------- */
+.leftcard1 {
+	margin-top: 20px;
+	width: 100%;
+	height: 350px;
+	background-color: white;
+	
+}
+
+.leftcardI1 {
+	margin-top:3px;
+	width : 100%;
+	height : 300px;
+	
+}
+
+.pic {
+	width : 100%;
+	height : 85%;
+}
+.hu {
+	width : 100%;
+	height : 15%;
+	text-align: center;
+}
+.leftcardI2 {
+	display: flex;
+	height : 30px;
+	margin-left: 12px;
+}
+
+.start {
+	width : 50%;
+	
+}
+.end {
+	width:50%;
+}
+
+.start1 {
+	width : 90%;
+}
+.leftcard2 {
+	margin-top: 10px;
+	width: 100%;
+	height: 300px;
+	background-color: white;
+}
+/* ------------------------------- */
+.body {
+	display: flex;
+	justify-content: center;
+	width: 80%;
+	height: 100%;
+}
+
+.midbody {
+	width: 50%;
+	padding: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	background-color: #dee2e7;
+}
+
+.card1 {
+	width: 100%;
+	height: 400px;
+	display: flex;
+	background-color: white;
+}
+
+
+.lcontent {
+	padding : 20px 10px 10px 10px;
+	width: 80%;
+	height: 100%;
+	border-left: 1px solid lightgray; 
+	border-collapse: collapse;
+}
+
+.card2 {
+	width: 100%;
+	height: 400px;
+	margin-top: 10px;
+	background-color: white;
+	display: flex;
+}
+
+
+
+.mcontent {
+	width: 75%;
+	height: 100%;
+	border: 1px solid;
+}
+
+.card3 {
+	width: 100%;
+	height: 400px;
+	margin-top: 10px;
+	background-color: white;
+	display: flex;
+}
+
+.recent {
+	padding : 20px 10px 10px 10px;
+	width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: top; 
+    border-collapse: collapse;
+}
+
+.rcontent {
+	padding : 20px 10px 10px 10px;
+	width: 80%;
+	height: 100%;
+	border-left: 1px solid lightgray; 
+	border-collapse: collapse;
+}
+/* ------------------------------- */
+.calender {
+	width: 100%;
+	height: 400px;
+	position: sticky;
+	top: 50px;
+	display:flex;
+}
+/* -------------letter */
+.letter{
+	padding : 20px 10px 10px 10px;
+	width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: top; 
+    border-collapse: collapse; 
+}
+.letterwrap {
+	width: 100%;
+}
+
+td, th {
+	text-align: center;
+	align-items: center;
+}
+th{
+	color: #505050;
+	border-bottom:1px solid #eceae8;
+	border-top:2px solid #505050;
+	font-family: "¸¼Àº°íµñ";
+	height:20px; 
+}
+td{
+	border-bottom:1px solid #eceae8;
+	height:30px;
+	color : #555;
+	font-family: "¸¼Àº°íµñ";
+}
+.rcv_dt {
+	display:block;
+	overflow : hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100px;
+	height: 68px;
+	overflow: hidden;
+}
+.not{
+	margin:0px;
+	padding:0px;
+	width:100%;
+	border-collapse: collapse;
+}
+.header{
+	display:flex;
+}
+.mletter{
+	margin: 0px;
+    padding: 0px;
+    width: 100%;
+    border-collapse: collapse;
+}

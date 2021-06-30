@@ -1,0 +1,262 @@
+@charset "EUC-KR";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+	background-color: #ea6e38;
+	align-items: center;
+	/* 수직 */
+	color: white;
+	height: 70px;
+	box-shadow: 0 3px 5px #bf0000;
+}
+
+.nav {
+	height: 100%;
+	width: 10%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* 수직 */
+}
+
+.nav:hover {
+	background-color: #ee895e;
+}
+
+.header {
+	margin-top: 5px;
+	display: flex;
+	justify-content: space-between;
+	background-color: white;
+	align-items: center;
+	/* 수직 */
+	height: 50px;
+}
+
+.leftheader {
+	display: flex;
+	width: 20%;
+	height: 100%;
+	justify-content: center;
+}
+
+.potal {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.potal:hover {
+	background-color: #dfdfdf;
+}
+
+.information {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.information:hover {
+	background-color: #dfdfdf;
+}
+
+.message {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.message:hover {
+	background-color: #dfdfdf;
+}
+
+
+
+.timeline {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.timeline:hover {
+	background-color: #dfdfdf;
+}
+
+.rightheader {
+	display: flex;
+	width: 60%;
+	height: 100%;
+}
+
+.blank {
+	width: 10%;
+	height: 100%;
+}
+/* ------------------------*/
+.bodywrap {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	background-color: lightgray;
+}
+
+.leftwrap {
+	width: 25%;
+	height: 100%;
+	background-color: #dde8f3;
+}
+
+.rightwrap {
+	width: 25%;
+	background-color: #dde8f3;
+}
+/* ------------------------------- */
+.leftcard1 {
+	margin-top: 20px;
+	width: 100%;
+	height: 350px;
+	background-color: white;
+}
+
+.leftcard2 {
+	margin-top: 10px;
+	width: 100%;
+	height: 300px;
+	background-color: white;
+}
+/* ------------------------------- */
+.body {
+	display: flex;
+	justify-content: center;
+	width: 80%;
+	height: 100%;
+	background-color: #f1c9c9;
+}
+
+.midbody {
+	width: 50%;
+	padding: 10px;
+	margin-top: 40px;
+	margin-left: 10px;
+	margin-right: 10px;
+	background-color: #dee2e7;
+}
+
+.card1 {
+	width: 100%;
+	height: 400px;
+	display: flex;
+	background-color: white;
+}
+
+.letter {
+	width: 25%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid;
+}
+
+.lcontent {
+	width: 75%;
+	height: 100%;
+	border: 1px solid;
+}
+
+.card2 {
+	width: 100%;
+	height: 400px;
+	margin-top: 10px;
+	background-color: white;
+	display: flex;
+}
+
+.mail {
+	width: 25%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid;
+}
+
+.mcontent {
+	width: 75%;
+	height: 100%;
+	border: 1px solid;
+}
+
+.card3 {
+	width: 100%;
+	height: 400px;
+	margin-top: 10px;
+	background-color: white;
+	display: flex;
+}
+
+.recent {
+	width: 25%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid;
+}
+
+.rcontent {
+	width: 75%;
+	height: 100%;
+	border: 1px solid;
+}
+/* ------------------------------- */
+.calender {
+	width: 100%;
+	border: 1px solid;
+	height: 400px;
+	position: sticky;
+	top: 4px;
+}
+/* -------------letter */
+.letter {
+	border: 1px solid #e3edf6;
+	width: 100%;
+}
+
+.letterwrap {
+	width: 100%;
+}
+
+td, th {
+	border: 1px solid #e3edf6;
+	text-align: center;
+	align-items: center;
+}
+th{
+	background-color: #718ebf;
+	color: white;
+}
+.rcv_dt {
+	display:block;
+	overflow : hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100px;
+	height: 68px;
+	overflow: hidden;
+}

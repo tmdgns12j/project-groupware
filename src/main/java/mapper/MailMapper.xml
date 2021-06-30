@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.MailMapper">
+
+<select id="list" resultType="mail">
+      select * from mail
+</select>
+
+<insert id="mailinsert" parameterType="mail">
+insert into mail(naverid,naverpw, recipient, title, contents)
+             values(#{naverid},#{naverpw}, #{recipient}, #{title},  
+             #{contents})
+</insert>
+
+<delete id="maildelete" parameterType="mail">
+delete from mail_tb
+</delete>
+
+<select id="max" resultType="int">
+     select mailseq.nextval from dual
+  </select>
+
+<select id="selectOne" resultType="mail"  parameterType="int">
+     select * from mail_tb where mail_num = #{value}
+  </select>
+
+
+<select id="selectOnestf_tb" resultType="memberlist"  parameterType="string">
+     select * from stf_tb where stf_id =  #{value}
+  </select>
+
+
+
+
+<!-- 0000 -->
+   <update  id="delete"  parameterType="mail">
+   update mail_tb set hidden = 'x' where mail_num = #{value}
+  </update> 
+  
+  <update  id="delete1"  parameterType="mail">
+   update mail_tb set hidden1 = 'x' where mail_num = #{value}
+  </update> 
+
+<update id="readcntadd" parameterType="int">
+  update  mail_tb set mail_read = mail_read + 1 where mail_num=#{value}
+  </update>
+
+
+</mapper>

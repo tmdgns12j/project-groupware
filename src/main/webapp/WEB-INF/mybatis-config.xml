@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--/main/resources/mybatis-config.xml -->
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+   <typeAliases>
+      <typeAlias type="model.Board" alias="board" />
+      <typeAlias type="model.Letter" alias="letter" />
+      <typeAlias type="model.Mail" alias="mail" />
+      <typeAlias type="model.MemberL" alias="memberlist" />
+      <typeAlias type="data.DateData" alias="datedata" />
+      <typeAlias type="model.Apv" alias="apv" />
+      <typeAlias type="model.Notice" alias="notice" />
+      <typeAlias type="model.Commute" alias="commute" />
+      <typeAlias type="model.Schedule" alias="schedule" />
+
+   </typeAliases>
+   
+   <mappers>
+      <mapper resource="mapper/MailMapper.xml" />
+	  <mapper resource="mapper/CommuteMapper.xml" />
+      <mapper resource="mapper/BoardMapper.xml" />
+      <mapper resource="mapper/LetterMapper.xml" />
+      <mapper resource="mapper/ApvMapper.xml" />
+      
+      <mapper resource="mapper/NoticeMapper.xml" />
+      <mapper resource="mapper/CalendarMapper.xml" />
+
+   </mappers>
+</configuration>  

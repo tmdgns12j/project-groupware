@@ -1,0 +1,51 @@
+@charset "EUC-KR";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.body {
+	display: flex;
+	justify-content: center;
+	width: 80%;
+	height: 100%;
+	background-color: #f1c9c9;
+}
+
+.letter {
+	width: 25%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid;
+}
+
+.letter {
+	border: 1px solid #e3edf6;
+	width: 100%;
+}
+
+.letterwrap {
+	width: 100%;
+}
+
+td, th {
+	border: 1px solid #e3edf6;
+	text-align: center;
+	align-items: center;
+}
+th{
+	background-color: #718ebf;
+	color: white;
+}
+.rcv_dt {
+	display:block;
+	overflow : hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100px;
+	height: 68px;
+	overflow: hidden;
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.CommuteMapper">
+	<update id="starttime" parameterType="string">
+		<!-- insert into cmt_tb(stf_id, cmt_srt_tm)
+		values(#{stf_id}, sysdate) -->
+		update cmt_tb set cmt_srt_tm=sysdate where stf_id=#{value}
+	</update>
+	
+	<update id="endtime" parameterType="string">
+		<!-- insert into cmt_tb(stf_id, cmt_srt_tm)
+		values(#{stf_id}, sysdate) -->
+		update cmt_tb set cmt_end_tm=sysdate where stf_id=#{value}
+	</update>
+
+	<select id="StartCmt_tb" resultType="Date"
+		parameterType="string">
+		select cmt_srt_tm from cmt_tb where stf_id = #{value}
+	</select>
+	
+	<select id="EndCmt_tb" resultType="Date"
+		parameterType="string">
+		select cmt_end_tm from cmt_tb where stf_id = #{value}
+	</select>
+
+</mapper>

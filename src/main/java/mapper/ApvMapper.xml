@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ApvMapper">
+
+<select id="list" resultType="apv">
+      select * from apv_tb
+</select>
+
+<insert id="insert" parameterType="apv">
+	insert into apv_tb(APV_SQ, DIV_APV_SQ, STF_ID, STF_MID_ID,
+				STF_FNL_ID, APV_OK_SQ, APV_NM, APV_CON)
+			values(#{APV_SQ}, #{DIV_APV_SQ}, #{STF_ID}, #{STF_MID_ID},
+				#{STF_FNL_ID}, #{APV_OK_SQ}, #{APV_NM}, #{APV_CON})
+</insert>
+
+<select id="max" resultType="int">
+     select apvseq.nextval from dual
+  </select>
+<select id="selectOne" resultType="apv" parameterType="int">
+	select * from apv_tb where apv_sq = #{value}
+</select>
+
+<update  id="update"  parameterType="apv">
+	update  apv_tb 
+	set APV_NO=#{APV_NO}
+	where APV_SQ=#{APV_SQ}
+</update>
+
+<update  id="fnlupdate"  parameterType="apv">
+	update  apv_tb 
+	set APV_NO1=#{APV_NO1}
+	where APV_SQ=#{APV_SQ}
+</update>
+</mapper>

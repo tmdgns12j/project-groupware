@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.LetterMapper">
+
+	<select id="list" resultType="letter">
+		select * from emi_Tb order by RCV_DT desc
+	</select>
+
+	<insert id="letterinsert" parameterType="letter">
+		insert into emi_tb(EML_SQ,EML_CNT, EML_PL_NM, EML_PL_CRS,
+		STF_SND_ID, RCV_DT,STF_RCV_ID,SND_DT,EML_READ)
+		values(#{EML_SQ},#{EML_CNT}, #{EML_PL_NM}, #{EML_PL_CRS},
+		#{STF_SND_ID}, sysdate,#{STF_RCV_ID},sysdate,0)
+	</insert>
+
+	<delete id="letterdelete" parameterType="letter">
+		delete from emi_tb
+	</delete>
+
+	<select id="max" resultType="int">
+		select letterseq.nextval from dual
+	</select>
+
+	<select id="selectOne" resultType="letter" parameterType="int">
+		select * from emi_tb where eml_sq = #{value}
+	</select>
+
+
+	<select id="selectOnestf_tb" resultType="memberlist"
+		parameterType="string">
+		select * from stf_tb where stf_id = #{value}
+	</select>
+
+
+
+
+	<!-- 0000 -->
+	<update id="delete" parameterType="mail">
+		update emi_tb set hidden = 'x' where eml_sq = #{value}
+	</update>
+	<update id="delete1" parameterType="mail">
+		update emi_tb set hidden1 = 'x' where eml_sq = #{value}
+	</update>
+	<update id="readcntadd" parameterType="int">
+		update emi_tb set eml_read = eml_read + 1 where eml_sq=#{value}
+	</update>
+
+	<insert id="insert" parameterType="memberlist">
+		insert into stf_tb(STF_ADMN, STF_DPT, STF_NM, STF_ID, STF_PW,
+		STF_PH, STF_CM_ADD, STF_DT_ADD, STF_BS_PH, STF_EML, STF_ENT, STF_REG, BIRTH)
+		values(#{STF_ADMN},#{STF_DPT},#{STF_NM},#{STF_ID},#{STF_PW},
+		#{STF_PH},#{STF_CM_ADD},#{STF_DT_ADD},#{STF_BS_PH},#{STF_EML},#{STF_ENT},#{STF_REG},#{BIRTH})
+	</insert>
+	<select id="memlist" resultType="memberlist">
+		select * from stf_tb
+	</select>
+	<insert id="cmtinsert" parameterType="memberlist">
+		insert into cmt_tb(STF_ID) values(#{STF_ID})
+	</insert>
+	<delete id="memdelete">
+		delete from stf_tb where stf_id = #{value}
+	</delete>
+	<delete id="cmtdelete">
+		delete from cmt_tb where stf_id = #{value}
+	</delete>
+	<update id="memupdate" parameterType="memberlist">
+		update stf_tb
+		set
+		STF_ADMN=#{STF_ADMN},STF_DPT=#{STF_DPT},STF_NM=#{STF_NM},STF_PW=#{STF_PW},
+		STF_PH=#{STF_PH},STF_CM_ADD=#{STF_CM_ADD},STF_DT_ADD=#{STF_DT_ADD},STF_BS_PH=#{STF_BS_PH},
+		STF_EML=#{STF_EML},STF_ENT=#{STF_ENT},STF_REG=#{STF_REG},BIRTH=#{BIRTH}
+		where STF_ID=#{STF_ID}
+	</update>
+	
+	<select id="scheduleList" resultType="schedule">
+		select * from schedule_tb order by schedule_sq asc
+	</select>
+	
+	<insert id="addSchedule" parameterType="schedule">
+		insert into
+		schedule_tb(schedule_sq,schedule_name, schedule_date)
+		values(#{schedule_sq},#{schedule_name}, #{schedule_date})
+	</insert>
+	
+	<delete id="scheduleDelete">
+		delete from schedule_tb where schedule_sq = #{value}
+	</delete>
+	
+	<!-- <insert id="updateSchedule" parameterType="schedule">
+		update schedule_tb
+		set
+		schedule_name=#{schedule_name},schedule_date=#{schedule_date}
+		where schedule_name=#{schedule_name}
+	</insert> -->
+	
+	<select id="selectOneschedule_tb" resultType="schedule"
+		parameterType="string">
+		select * from schedule_tb where schedule_sq = #{value}
+	</select>
+	
+	<select id="smax" resultType="int">
+		select scheduleseq.nextval from dual
+	</select>
+	
+	<update id="scheduleUpdate" parameterType="schedule">
+		update schedule_tb
+		set
+		schedule_name=#{schedule_name},schedule_date=#{schedule_date}
+		where schedule_sq=#{schedule_sq}
+	</update>
+</mapper>

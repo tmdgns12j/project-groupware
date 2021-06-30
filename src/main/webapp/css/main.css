@@ -1,0 +1,25 @@
+/* WebContent/css/main.css */
+.wrap{
+	display:flex;
+	justify-content: center;
+}
+table {
+	width: 90%;
+	border-collapse: collapse;
+}
+
+th, td {
+	border: 1px solid #bcbcbc;
+	text-align: center;
+	padding: 8px;
+}
+
+td {
+	background-color: #F9F9F9;
+}
+
+caption {
+	color: #111111;
+	font-size: 20px;
+	background-color: #FFFFFF;
+}
