@@ -53,23 +53,6 @@ public class LetterController {
 		}
 		return "letter/writeForm";
 	}
-	/*
-	 * @RequestMapping("myletterForm") public String myletterForm(Model m) throws
-	 * Throwable { System.out.println("myletterForm"); List<Letter> listletter =
-	 * dao.listletter(); // 화면에 출력된 게시물 데이터 m.addAttribute("num",
-	 * listletter.size()); m.addAttribute("list", listletter);
-	 * 
-	 * return "myletterForm"; }
-	 * 
-	 * @RequestMapping("myletterForm2") public String myletterForm2(Model m) throws
-	 * Throwable { System.out.println("myletterForm2"); List<Letter> listletter =
-	 * dao.listletter(); // 화면에 출력된 게시물 데이터 m.addAttribute("num",
-	 * listletter.size()); m.addAttribute("list", listletter);
-	 * 
-	 * return "myletterForm2"; }
-	 */
-
-	/*------------------------*/
 
 	@RequestMapping("letterloginForm")
 	public String letterloginForm() throws Throwable {
@@ -85,8 +68,8 @@ public class LetterController {
 		 * 비밀번호 확인하세요 ----> loginForm.jsp로 페이지 이동
 		 */
 
-//		String id = request.getParameter("STF_ID"); // 입력된 id값
-//		String pass = request.getParameter("STF_PW"); // 입력된 pass 값
+		//		String id = request.getParameter("STF_ID"); // 입력된 id값
+		//		String pass = request.getParameter("STF_PW"); // 입력된 pass 값
 		// mem : db에 저장된 회원정보 저장
 		System.out.println(STF_ID);
 		MemberL mem = dao.letterselectOne(STF_ID);
@@ -128,12 +111,12 @@ public class LetterController {
 	public String letterwrite(MultipartHttpServletRequest request, Letter letter, Model m) throws Throwable {
 
 		String uploadpath = request.getServletContext().getRealPath("/upfile");
-		MultipartFile multiFile = request.getFile("uploadfile");
+		MultipartFile multiFile = request.getFile("uploadfile");//파일을 위한 멀티파트
 		if (!multiFile.isEmpty()) {
 			File file = new File(uploadpath, multiFile.getOriginalFilename());
 			try {
 				multiFile.transferTo(file);
-				letter.setEML_PL_NM(multiFile.getOriginalFilename());
+				letter.setEML_PL_NM(multiFile.getOriginalFilename());//파일이름 설정
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -163,7 +146,7 @@ public class LetterController {
 	@RequestMapping("letterdelete")
 	public String letterdelete(Model m) throws Throwable {
 		/*
-		 * /WebContent/model1/board/delete.jsp 1. num,pass 파라미터를 변수에 저장. 2. 입력된 비밀번호와 db
+		 * 1. num,pass 파라미터를 변수에 저장. 2. 입력된 비밀번호와 db
 		 * 비밀번호 검증 틀린경우 : 비밀번호 오류 메시지 출력, deleteForm.jsp 페이지 이동 3. 게시물 삭제. 삭제 성공 : 삭제 성공
 		 * 메시지 출력, list.jsp 페이지 이동 삭제 실패 : 삭제 실패 메시지 출력, info.jsp 페이지 이동
 		 */
@@ -190,21 +173,16 @@ public class LetterController {
 		return "letter/alert";
 	}
 
-	@RequestMapping("delete")
+	@RequestMapping("delete")//체크된 쪽지 삭제(전체지우기)
 	public String delete(Model m, String[] RowCheck, HttpSession session) throws Throwable {
-		System.out.println(Arrays.asList(RowCheck));
-
-		System.out.println("delete들어옴");
-		System.out.println("f");
-
-		System.out.println("d");
+		System.out.println(Arrays.asList(RowCheck));//체크된거 확인용
 		System.out.println(RowCheck[0]);
-		int size = RowCheck.length;
-		System.out.println(size);
+		int size = RowCheck.length;//체크된 항목 개수
+		System.out.println(size);//개수 확인용
 		String msg = "삭제완료";
 		String url = "letter";
 		for (int i = 0; i < size; i++) {
-			if (dao.delete(RowCheck[i])) {
+			if (dao.delete(RowCheck[i])) {//체크된것 삭제
 				System.out.println("if밖");
 				msg = "게시글을 성공적으로 삭제하였습니다.";
 				url = "letter";
@@ -217,13 +195,9 @@ public class LetterController {
 		return "letter/alert";
 	}
 
-	@RequestMapping("delete1")
+	@RequestMapping("delete1")//체크로 선택삭제
 	public String delete1(Model m, String[] RowCheck1) throws Throwable {
-		System.out.println("delete들어옴");
 		System.out.println(Arrays.asList(RowCheck1));
-		System.out.println("f");
-
-		System.out.println("d");
 		System.out.println(RowCheck1[0]);
 		int size = RowCheck1.length;
 		System.out.println(size);
@@ -259,12 +233,11 @@ public class LetterController {
 	}
 
 	/*---------------------------------------------------------*/
-	@RequestMapping("info")
+	@RequestMapping("info")//0이아니면 읽음으로 처리될것
 	public String info(Model m, int num) {
 		/*
-		 * : 게시물 상세 보기 :board/info?num=41 1. num 파라미터를 이용하여 db에 해당 게시물 조회 Board board =
-		 * new BoardDao().selectOne(num); 2. 조회수 증가시키기. readcnt+1 new
-		 * BoardDao().readcntadd(num); 3. 1번에서 조회한 게시물데이터를 화면에 출력하기
+		 * 1. num 파라미터를 이용하여 db에 해당 게시물 조회 selectOne(num); 2. 조회수 증가시키기. readcnt+1 new
+		 * 3. 1번에서 조회한 게시물데이터를 화면에 출력하기
 		 */
 		/* eml_sq 편지번호 number */
 		// myletter에서 num가져옴 1
@@ -300,7 +273,7 @@ public class LetterController {
 		return "letter/alert";
 	}
 
-	@RequestMapping("memlist")
+	@RequestMapping("memlist")//회원리스트
 	public String memlist(Model m) {
 		System.out.println("memlist 입니다");
 
@@ -311,7 +284,7 @@ public class LetterController {
 		return "letter/memlist";
 	}
 
-	@RequestMapping("memdelete")
+	@RequestMapping("memdelete")//회원 삭제
 	public String memdelete(Model m, String id) {
 		System.out.println("memdelete");
 
@@ -328,7 +301,7 @@ public class LetterController {
 		return "letter/alert";
 	}
 
-	@RequestMapping("memupdateForm")
+	@RequestMapping("memupdateForm")//회원정보 수정폼
 	public String memupdateForm(Model m, String id) {
 		System.out.println("updateForm");
 		MemberL mem = dao.letterselectOne(id);
@@ -336,7 +309,7 @@ public class LetterController {
 		return "letter/memupdateForm";
 	}
 
-	@RequestMapping("memupdate")
+	@RequestMapping("memupdate")//회원정보 수정
 	public String memupdate(Model m, MemberL mem) {
 		MemberL dbMember = dao.letterselectOne(mem.getSTF_ID());
 		String msg = "수정실패";
@@ -352,7 +325,7 @@ public class LetterController {
 		return "letter/alert";
 	}
 
-	@RequestMapping("scheduleList")
+	@RequestMapping("scheduleList")//사내 일정목록
 	public String scheduleList(Model m) {
 		System.out.println("schedulelist입니다");
 
@@ -363,7 +336,7 @@ public class LetterController {
 		return "letter/scheduleList";
 	}
 
-	@RequestMapping("scheduleDelete")
+	@RequestMapping("scheduleDelete")//사내일정 삭제
 	public String scheduleDelete(Model m, String id) {
 		System.out.println("scheduleDelete");
 
@@ -379,7 +352,7 @@ public class LetterController {
 		return "letter/alert";
 	}
 
-	@RequestMapping("scheduleUpdateForm")
+	@RequestMapping("scheduleUpdateForm")//사내일정 수정 폼
 	public String scheduleUpdateForm(Model m, String id) {
 		Schedule schedule = dao.scheduleselectOne(id);
 		System.out.println(schedule.getSchedule_sq());
@@ -389,11 +362,10 @@ public class LetterController {
 
 	@RequestMapping("scheduleForm")
 	public String ScheduleForm() {
-		System.out.println("joinForm");
 		return "letter/scheduleForm";
 	}
 
-	@RequestMapping("addSchedule")
+	@RequestMapping("addSchedule")//일정 추가
 	public String addSchedule(Schedule schedule, Model m) {
 		String msg = "fail";
 		String url = "scheduleForm";
@@ -410,13 +382,8 @@ public class LetterController {
 		return "letter/alert";
 	}
 
-	@RequestMapping("scheduleUpdate")
+	@RequestMapping("scheduleUpdate")//사내일정 수정
 	public String scheduleUpdate(HttpSession session, Schedule schedule, Model m) throws Throwable {
-		/*
-		 * /WebContent/model1/board/update.jsp 1. 파라미터정보들을 Board 객체 저장. 2. 비밀번호 검증 비밀번호
-		 * 일치 : 수정으로. 비밀번호 불일치 : 비밀번호 오류 메세지 출력하고, updateForm.jsp로 페이지 이동 3. 수정성공 : 수정성공
-		 * 메시지 출력 후 list.jsp 페이지 이동 수정실패 : 수정실패 메시지 출력 후 updateForm.jsp 페이지 이동
-		 */
 		String msg = "fail";
 		String url = "scheduleList";
 		if (dao.scheduleUpdate(schedule)) {

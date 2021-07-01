@@ -53,23 +53,6 @@ public class MailController {
 		System.out.println("mailForm");
 		return "mail/writeForm";
 	}
-	/*
-	 * @RequestMapping("mymailForm") public String mymailForm(Model m) throws
-	 * Throwable { System.out.println("mymailForm"); List<mail> listmail =
-	 * dao.listmail(); // 화면에 출력된 게시물 데이터 m.addAttribute("num", listmail.size());
-	 * m.addAttribute("list", listmail);
-	 * 
-	 * return "mymailForm"; }
-	 * 
-	 * @RequestMapping("mymailForm2") public String mymailForm2(Model m) throws
-	 * Throwable { System.out.println("mymailForm2"); List<mail> listmail =
-	 * dao.listmail(); // 화면에 출력된 게시물 데이터 m.addAttribute("num", listmail.size());
-	 * m.addAttribute("list", listmail);
-	 * 
-	 * return "mymailForm2"; }
-	 */
-
-	/*------------------------*/
 
 	@RequestMapping("mailloginForm")
 	public String mailloginForm() throws Throwable {
@@ -78,16 +61,9 @@ public class MailController {
 
 	@RequestMapping("maillogin")
 	public String maillogin(String STF_ID, String STF_PW, HttpSession session, Model m) throws Throwable {
-		/*
-		 * 1. id, pass 파라미터 저장 2. db에서 id 에 해당하는 데이터를 읽어서 Member 전달받기 3. 결과분석 Member객체가
-		 * null 인경우 : 아이디를 확인하세요 메세지 출력. --->loginForm.jsp 페이지 이동 Member객체가 null이 아닌 경우
-		 * : 화면에서 입력된 비밀번호와 db 비밀번호 검증 같은경우 : 로그인 성공. -----> main.jsp 페이지 이동 다른 경우 :
-		 * 비밀번호 확인하세요 ----> loginForm.jsp로 페이지 이동
-		 */
 
 //		String id = request.getParameter("STF_ID"); // 입력된 id값
 //		String pass = request.getParameter("STF_PW"); // 입력된 pass 값
-		// mem : db에 저장된 회원정보 저장
 		System.out.println(STF_ID);
 		MemberL mem = dao.mailselectOne(STF_ID);
 		String msg = "이이디를 확인해주세요";
@@ -108,18 +84,6 @@ public class MailController {
 		m.addAttribute("msg", msg);
 		return "mail/alert";
 	}
-
-	/*
-	 * @RequestMapping("main") public String main(Model m, HttpSession session)
-	 * throws Throwable {
-	 * 
-	 * 1. 로그인 후에 보여지는 페이지. => 로그인 여부 확인 => 로그인상태가 아닌 경우, loginForm.jsp로 페이지 이동하기
-	 * 
-	 * String login = (String) session.getAttribute("login");
-	 * 
-	 * if (login == null || login.trim().equals("")) { return "mail/loginForm"; }
-	 * else { m.addAttribute("login", login); return "mail/main"; } }
-	 */
 
 	@RequestMapping("mailwrite")
 	public String mailwrite(MultipartHttpServletRequest request, Mail2 mail, Model m) throws Throwable {
@@ -145,10 +109,6 @@ public class MailController {
 		String msg = "fail";
 		String url = "writeForm";
 		System.out.println("if전");
-		/*
-		 * if (dao.mailinsert(mail)) { System.out.println("if후"); msg = "게시물 등록 성공"; url
-		 * = "mail"; }
-		 */
 		System.out.println("if후");
 		request.setAttribute("msg", msg);
 		request.setAttribute("url", url);
@@ -158,17 +118,7 @@ public class MailController {
 
 	@RequestMapping("maildelete")
 	public String maildelete(Model m) throws Throwable {
-		/*
-		 * /WebContent/model1/board/delete.jsp 1. num,pass 파라미터를 변수에 저장. 2. 입력된 비밀번호와 db
-		 * 비밀번호 검증 틀린경우 : 비밀번호 오류 메시지 출력, deleteForm.jsp 페이지 이동 3. 게시물 삭제. 삭제 성공 : 삭제 성공
-		 * 메시지 출력, list.jsp 페이지 이동 삭제 실패 : 삭제 실패 메시지 출력, info.jsp 페이지 이동
-		 */
-
-		/* String num = request.getParameter("STF_SQ"); */ // 입력된 id값
 		Mail2 mail = new Mail2();
-
-		// board.getPass() : db에 저장된 비밀번호
-
 		String msg = "삭제완료";
 		String url = "mail";
 		System.out.println("if밖");

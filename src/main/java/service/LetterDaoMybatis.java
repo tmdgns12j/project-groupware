@@ -28,16 +28,12 @@ public class LetterDaoMybatis {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
-	public List<Letter> listletter() { // limit =3
-
-		// ---------------------------------
+	public List<Letter> listletter() {
 		List<Letter> listletter = sqlSession.selectList(ms + "list");
-
 		return listletter;
 	}
 
 	public boolean letterinsert(Letter letter) {
-
 		int num = (Integer) sqlSession.selectOne(ms + "max");
 		letter.setEML_SQ(num);
 		if (letter.getEML_PL_NM() == null)
@@ -51,11 +47,7 @@ public class LetterDaoMybatis {
 	}
 
 	public boolean letterdelete(Letter letter) {
-		System.out.println("mapper昏力傈");
-
-		System.out.println("mapper立加傈");
 		sqlSession.delete(ms + "letterdelete", letter);
-		System.out.println("mapper昏力");
 
 		return true;
 	}
