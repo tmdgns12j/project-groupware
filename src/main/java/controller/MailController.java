@@ -62,8 +62,8 @@ public class MailController {
 	@RequestMapping("maillogin")
 	public String maillogin(String STF_ID, String STF_PW, HttpSession session, Model m) throws Throwable {
 
-//		String id = request.getParameter("STF_ID"); // 입력된 id값
-//		String pass = request.getParameter("STF_PW"); // 입력된 pass 값
+		//		String id = request.getParameter("STF_ID"); // 입력된 id값
+		//		String pass = request.getParameter("STF_PW"); // 입력된 pass 값
 		System.out.println(STF_ID);
 		MemberL mem = dao.mailselectOne(STF_ID);
 		String msg = "이이디를 확인해주세요";
@@ -135,7 +135,7 @@ public class MailController {
 
 		return "mail/alert";
 	}
-
+	//----------------------밑은 쪽지에있는 삭제코드 추후 개발용
 	@RequestMapping("delete")
 	public String delete(Model m, String[] RowCheck, HttpSession session) throws Throwable {
 		System.out.println(Arrays.asList(RowCheck));
@@ -150,12 +150,12 @@ public class MailController {
 		String msg = "삭제완료";
 		String url = "mail";
 		for (int i = 0; i < size; i++) {
-			
-			  if (dao.delete(RowCheck[i])) {
-				  System.out.println("if밖"); 
-				  msg = "게시글을 성공적으로 삭제하였습니다."; 
-				  url = "mail"; }
-			 
+
+			if (dao.delete(RowCheck[i])) {
+				System.out.println("if밖"); 
+				msg = "게시글을 성공적으로 삭제하였습니다."; 
+				url = "mail"; }
+
 			System.out.println("delete");
 		}
 		m.addAttribute("url", url);
@@ -177,12 +177,12 @@ public class MailController {
 		String msg = "삭제완료";
 		String url = "mail";
 		for (int i = 0; i < size; i++) {
-			
-			  if (dao.delete1(RowCheck1[i])) { 
-				  System.out.println("if밖"); 
-				  msg =  "게시글을 성공적으로 삭제하였습니다."; 
-				  url = "mail"; }
-			 
+
+			if (dao.delete1(RowCheck1[i])) { 
+				System.out.println("if밖"); 
+				msg =  "게시글을 성공적으로 삭제하였습니다."; 
+				url = "mail"; }
+
 			System.out.println("delete");
 		}
 		m.addAttribute("url", url);
@@ -190,7 +190,7 @@ public class MailController {
 
 		return "mail/alert";
 	}
-
+	//--------------------------------------------------------------------------------까지 삭제
 	@RequestMapping("logout")
 	public String logout(Model m, HttpSession session) throws Throwable {
 
@@ -223,15 +223,15 @@ public class MailController {
 		m.addAttribute("num", num);// mailinfo로 num넘겨줌 if l.eml_sq = num
 		return "mail/mailInfo";
 	}
-	
+
 
 	@RequestMapping("mailForm")
 	public ModelAndView mailForm() {
 		ModelAndView mav = new ModelAndView("/mail/mailw");
 		return mav;
 	}
-	
-	@RequestMapping("mailw")
+
+	@RequestMapping("mailw")//메일쓰기
 	public ModelAndView mailw(Mail mail,HttpSession session, Model m) {
 		mailSend(mail);
 		if(dao.mailinsert(mail)) {
@@ -240,13 +240,10 @@ public class MailController {
 		ModelAndView mav = new ModelAndView("/mail/mailSuccess");
 		return mav;
 	}
-	
-	
-	
-	
+
 	//자바메일을 이용하여 메일 전송시 메일 서버에 인증 받기위한 객체
 	private final class MyAuthenticator extends Authenticator {
-		private String id;
+		private String id;//보내는사람시 @naver.com이 디폴트로 붙어짐
 		private String pw;
 		public MyAuthenticator(String id, String pw) {
 			this.id = id;
@@ -262,10 +259,10 @@ public class MailController {
 		//메일 전송을 위한 환경 변수 설정
 		MyAuthenticator auth = new MyAuthenticator(mail.getNaverid(),mail.getNaverpw());
 		Properties prop = new Properties(); //Map 객체 
-		prop.put("mail.smtp.host", "smtp.naver.com"); //메일 전송서버 주소 정보  
+		prop.put("mail.smtp.host", "smtp.naver.com"); //메일 전송서버 주소 정보, 
 		prop.put("mail.smtp.starttls.enable", "true");//보안 서버
 		prop.put("mail.user",mail.getNaverid() );
-		prop.put("mail.from",mail.getNaverid()+"@naver.com" );
+		prop.put("mail.from",mail.getNaverid()+"@naver.com" );//보내는사람시 @naver.com이 디폴트로 붙어짐
 		prop.put("mail.debug","false"); //debug 상태로 실습하기
 		prop.put("mail.smtp.auth","true"); //메일 전송시 인증 필수. 
 		prop.put("mail.smtp.port","465");
@@ -277,34 +274,34 @@ public class MailController {
 		//msg : session을 통해 전송되는 객체
 		MimeMessage msg = new MimeMessage(session);  //메일로 전송할 객체 생성
 		try {
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(mail.getNaverid()+"@naver.com"));
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(mail.getNaverid()+"@naver.com"));
 
-            //수신자메일주소
-            message.addRecipient(Message.RecipientType.TO, 
-            		new InternetAddress(mail.getRecipient())); 
+			//수신자메일주소
+			message.addRecipient(Message.RecipientType.TO, 
+					new InternetAddress(mail.getRecipient())); 
 
-            // Subject 
-            message.setSubject(mail.getTitle()); //메일 제목을 입력
+			// Subject 
+			message.setSubject(mail.getTitle()); //메일 제목을 입력
 
-            // Text
-            message.setText(mail.getContents());    //메일 내용을 입력
+			// Text
+			message.setText(mail.getContents());    //메일 내용을 입력
 
-            // send the message
-            Transport.send(message); ////전송
-            System.out.println("message sent successfully...");
-        } catch (AddressException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (MessagingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+			// send the message
+			Transport.send(message); ////전송
+			System.out.println("message sent successfully...");
+		} catch (AddressException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 
 
 	}
-	
-	
+
+
 
 }

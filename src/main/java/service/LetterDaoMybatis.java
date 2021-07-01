@@ -98,7 +98,7 @@ public class LetterDaoMybatis {
 			return false;
 	}
 
-	public List<MemberL> memlist() { // limit =3
+	public List<MemberL> memlist() {
 		List<MemberL> listmember = sqlSession.selectList(ms + "memlist");
 		return listmember;
 	}
@@ -121,7 +121,7 @@ public class LetterDaoMybatis {
 			return false;
 	}
 	
-	public List<Schedule> scheduleList() { // limit =3
+	public List<Schedule> scheduleList() {
 		List<Schedule> schedule = sqlSession.selectList(ms + "scheduleList");
 		return schedule;
 	}

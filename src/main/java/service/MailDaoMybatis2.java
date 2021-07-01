@@ -27,18 +27,12 @@ import model.MemberL;
 	 @Autowired
 	 SqlSessionTemplate  sqlSession;
 	 
-	public List<Mail2> listmail() { // limit =3
-	   
-	      
-	      // ---------------------------------
+	public List<Mail2> listmail() {
 	      List<Mail2>  listmail = sqlSession.selectList(ms+"list");
-	 
-	      
 	      return listmail;
 	   }
 
 	public boolean mailinsert(Mail2 mail) {
-		
 		int num = (Integer) sqlSession.selectOne(ms+"max");
 		mail.setMAIL_NUM(num);
 		if(mail.getMAIL_PL_NM()==null)
@@ -53,9 +47,7 @@ import model.MemberL;
 
 
 	public boolean maildelete(Mail2 mail) {
-		System.out.println("mapper昏力傈");
 
-		System.out.println("mapper立加傈");
 		sqlSession.delete(ms + "maildelete", mail);
 		System.out.println("mapper昏力");
 
@@ -90,6 +82,3 @@ import model.MemberL;
 		return mail;
 	}
 }
- 
- 
- //end class

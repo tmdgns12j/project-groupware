@@ -23,17 +23,12 @@ import model.MemberL;
 @Repository
 public class MailDaoMybatis {
 	private static final String ms="mapper.MailMapper.";
-	private static Map map = new HashMap();
 
 	@Autowired
 	SqlSessionTemplate  sqlSession;
 
-	public List<Mail> listmail() { // limit =3
-
-
-		// ---------------------------------
+	public List<Mail> listmail() {
 		List<Mail>  listmail = sqlSession.selectList(ms+"list");
-
 
 		return listmail;
 	}
@@ -42,7 +37,6 @@ public class MailDaoMybatis {
 		int num = (Integer) sqlSession.selectOne(ms+"max");
 		mail.setNum(num);
 		int count = sqlSession.insert(ms+"mailinsert", mail);
-
 		if (count>0)
 			return true;
 		else
@@ -51,9 +45,6 @@ public class MailDaoMybatis {
 
 
 	public boolean maildelete(Mail2 mail) {
-		System.out.println("mapper삭제전");
-
-		System.out.println("mapper접속전");
 		sqlSession.delete(ms + "maildelete", mail);
 		System.out.println("mapper삭제");
 
@@ -83,11 +74,8 @@ public class MailDaoMybatis {
 		sqlSession.update(ms + "readcntadd", num);
 	}
 
-	public Mail2 selectOne(int num) {// eml_sq 편지번호 int
+	public Mail2 selectOne(int num) {
 		Mail2 mail = (Mail2) sqlSession.selectOne(ms + "selectOne", num);
 		return mail;
 	}
 }
-
-
-//end class

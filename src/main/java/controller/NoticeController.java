@@ -208,10 +208,10 @@ import model.Notice;
 @Controller
 @RequestMapping("/notice/")
 public class NoticeController {
-	
+
 	@Autowired
 	NoticeDaoMybatis dao;
-	
+
 	@RequestMapping("test")
 	public String pub(Model m) {
 		m.addAttribute("test", "notice");// 이 테스트가 index.jsp의 테스트
@@ -232,7 +232,7 @@ public class NoticeController {
 		}
 
 		int limit = 10; // 한페이지에 출력할 게시물 건수
-		
+
 		int noticecount = dao.noticeCount();// 등록된 전체 게시물의 건수
 
 		List<Notice> list = dao.list(pageNum, limit, noticecount); // 화면에 출력된 게시물 데이터
@@ -267,7 +267,7 @@ public class NoticeController {
 		 */
 
 		// 파라미터값읽기
-		
+
 		Notice notice = dao.selectOne(num); // 게시물 조회
 		dao.readcntadd(num); // 조회건수증가
 		m.addAttribute("notice", notice);
@@ -278,17 +278,17 @@ public class NoticeController {
 	@RequestMapping("updateForm")
 	public String updateForm(int num, Model m) throws Throwable {
 		/*
-		 * /WebContent/model1/board/updateForm.jsp 1. num 값의 게시물을 조회화여 화면 출력하기
+		 * 1. num 값의 게시물을 조회화여 화면 출력하기
 		 */
 
 		Notice notice = dao.selectOne(num);
 		m.addAttribute("notice", notice);
 		return "notice/updateForm";
 	}
-	
+
 	@RequestMapping("writeForm")
 	public String writeForm() throws Throwable {
-		
+
 		return "notice/writeForm";
 	}
 
@@ -301,19 +301,17 @@ public class NoticeController {
 	@RequestMapping("replyForm")
 	public String replyForm(int num, Model m) throws Throwable {
 		/*
-		 * /WebContent/model1/board/replyForm.jsp : 답변글 쓰기 화면 1. 원글의 num을 파라미터로 받는다. 2.
-		 * 원글의 num,ref,reflevel,refstep 정보를 저장 3. 입력 화면 표시
+		 *  답변글 쓰기 화면 1. 원글의 num을 파라미터로 받는다. 2.원글의 num,ref,reflevel,refstep 정보를 저장
+		 *  3. 입력 화면 표시
 		 */
-		
 		Notice notice = dao.selectOne(num); // 게시물 조회
-
 		m.addAttribute("notice", notice);
 
 		return "/notice/replyForm";
 	}
 
 	/*
-	 * kic.xml에 뷰만 연결해놓음 그거지우고 mapping해도 무관함
+	 * kic.xml에 뷰만 연결해놓음 그거지우고 mapping해도 무관함 참고용
 	 * 
 	 * @RequestMapping("wirteForm") public String writeForm(HttpServletRequest
 	 * request, HttpServletResponse response) throws Throwable {
@@ -329,8 +327,7 @@ public class NoticeController {
 		 * num 현재 등록된 num의 최대값을 조회. 최대값 +1 등록된 게시물의 번호. db에서 maxnum 을 구해서 +1 값으로 num
 		 * 설정하기
 		 */
-		// 1. 파라미터 값을 model.Board 객체 저장.
-		// String uploadpath = application.getRealPath("/") +"chap09_board/upfile/";
+		// 1. 파라미터 값을 model.notice 객체 저장.
 		String uploadpath = request.getServletContext().getRealPath("/upfile");
 		MultipartFile multiFile = request.getFile("uploadfile");
 		if (!multiFile.isEmpty()) {
@@ -348,7 +345,7 @@ public class NoticeController {
 		}
 		// 2. sequence nextval 입력
 		// db에서 maxnum 을 구해서 +1 값으로 num 설정하기
-		
+
 		// 3. board 객체의 내용을 db에 insert 하기
 		String msg = "게시물 등록 실패";
 		String url = "writeForm";
@@ -365,7 +362,7 @@ public class NoticeController {
 	@RequestMapping("update")
 	public String update(MultipartHttpServletRequest request, Notice notice, Model m) throws Throwable {
 		/*
-		 * /WebContent/model1/board/update.jsp 1. 파라미터정보들을 Board 객체 저장. 2. 비밀번호 검증 비밀번호
+		 * 1. 파라미터정보들을 Board 객체 저장. 2. 비밀번호 검증 비밀번호
 		 * 일치 : 수정으로. 비밀번호 불일치 : 비밀번호 오류 메세지 출력하고, updateForm.jsp로 페이지 이동 3. 수정성공 : 수정성공
 		 * 메시지 출력 후 list.jsp 페이지 이동 수정실패 : 수정실패 메시지 출력 후 updateForm.jsp 페이지 이동
 		 */
@@ -386,11 +383,11 @@ public class NoticeController {
 			notice.setFile1("");
 		}
 		System.out.println("1");
-		
+
 		if (notice.getFile1() == null || notice.getFile1().equals("")) {
 			notice.setFile1(request.getParameter("file2"));
 		}
-		
+
 		Notice dbNotice = dao.selectOne(notice.getNum());
 		String msg = "비밀번호가 틀렸습니다.";
 		String url = "updateForm?num=" + notice.getNum();
@@ -410,18 +407,18 @@ public class NoticeController {
 
 		return "notice/alert";
 	}
-	
+
 	@RequestMapping("delete")
 	public String delete(int num, String pass, Model m) throws Throwable {
 		/*
-		 * /WebContent/model1/board/delete.jsp 1. num,pass 파라미터를 변수에 저장. 2. 입력된 비밀번호와 db
+		 *  1. num,pass 파라미터를 변수에 저장. 2. 입력된 비밀번호와 db
 		 * 비밀번호 검증 틀린경우 : 비밀번호 오류 메시지 출력, deleteForm.jsp 페이지 이동 3. 게시물 삭제. 삭제 성공 : 삭제 성공
 		 * 메시지 출력, list.jsp 페이지 이동 삭제 실패 : 삭제 실패 메시지 출력, info.jsp 페이지 이동
 		 */
 
 		String msg = "비밀번호가 틀렸습니다!";
 		String url = "deleteForm?num=" + num;
-		
+
 		Notice notice = dao.selectOne(num);
 		// board.getPass() : db에 저장된 비밀번호
 		if (pass.equals(notice.getPass())) {
@@ -444,22 +441,17 @@ public class NoticeController {
 		/*
 		 * /WebContent/model1/board/reply.jsp : 답글 등록 1. 파라미터 값을 Board 객체에 저장하기 원글정보 :
 		 * num, ref, reflevel(ㄴ), refstep(print) 답글정보 : name, pass, subject, content 2.
-		 * 같은 ref 값을 사용하는 게시물들의 refstep 값을 1 증가 시키기 1 1 0 0 2 2 0 0 3 1 1 2 4 1 1 1
-		 * ======================== print 2 2 0 0 1 1 0 0 4 1 1 1 3 1 1 2 3. Board 객체를
-		 * db에 insert 하기. 4. 등록 성공시 : "답변등록 완료"메시지 출력 후, list.jsp로 페이지 이동 등록 실패시 :
-		 * "답변등록시 오류발생"메시지 출력 후, replyForm.jsp로 페이지 이동하기 1. 파라미터 값을 Board 객체에 저장하기
+		 * 3. Board 객체를 db에 insert 하기.
+		 * 4. 등록 성공시 : "답변등록 완료"메시지 출력 후, list.jsp로 페이지 이동 등록 실패시 :
+		 * "답변등록시 오류발생"메시지 출력 후, replyForm.jsp로 페이지 이동하기
 		 */
-		
-		
 		System.out.println("reply");
-		
-		System.out.println("dao");
 		dao.refstepadd(notice.getRef(), notice.getRefstep());
 		System.out.println("1");
 		// 3. Board 객체를 db에 insert 하기.
 		String msg = "답변등록시 오류발생";
 		String url = "replyForm?num=" + notice.getNum();
-		
+
 		if (dao.insert(notice)) {
 			msg = "답변등록 완료";
 			url = "list";

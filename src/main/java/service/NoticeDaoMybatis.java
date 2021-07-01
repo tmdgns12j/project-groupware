@@ -107,18 +107,14 @@ import model.Notice;
 	}
 	
 	
-	public List<Notice> list(int pageNum, int limit, int noticecount) { // limit =3
-		
-		
-		// ---------------------------------
+	public List<Notice> list(int pageNum, int limit, int noticecount) {
 		int start = (pageNum - 1) * limit + 1;
 		int end = start + limit - 1;
 		map.clear();
 		map.put("start", start);
 		map.put("end", end);
 		List<Notice>  list = session.selectList(ns+"list", map);
-		
-		
+
 		return list;
 	}
 	public boolean insert(Notice notice) {

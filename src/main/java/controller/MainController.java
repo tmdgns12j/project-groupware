@@ -31,7 +31,7 @@ import service.NoticeDaoMybatis;
 
 @Controller
 @RequestMapping("/main/")
-public class MainController {
+public class MainController { //메인화면의 view목적, 각기능의 컨트롤러에서 list부분만 따왔음
 	@Autowired
 	LetterDaoMybatis dao;
 	@Autowired
@@ -90,7 +90,6 @@ public class MainController {
 			System.out.println("달력들어옴");
 			Calendar cal = Calendar.getInstance();
 			DateData calendarData;
-			// 寃 깋 궇吏
 			if (dateData.getDate().equals("") && dateData.getMonth().equals("")) {
 				dateData = new DateData(String.valueOf(cal.get(Calendar.YEAR)), String.valueOf(cal.get(Calendar.MONTH)),
 						String.valueOf(cal.get(Calendar.DATE)), null);
@@ -100,14 +99,13 @@ public class MainController {
 			Map<String, Integer> today_info = dateData.today_info(dateData);
 			System.out.println("2");
 			List<DateData> dateList = new ArrayList<DateData>();
-			// 떎吏덉쟻 씤 떖 젰 뜲 씠 꽣 由ъ뒪 듃 뿉 뜲 씠 꽣 궫 엯 떆 옉.
-			// 씪 떒 떆 옉 씤 뜳 뒪源뚯 븘臾닿쾬 룄 뾾 뒗 뜲 씠 꽣 궫 엯
+
 			for (int i = 1; i < today_info.get("start"); i++) {
 				calendarData = new DateData(null, null, null, null);
 				dateList.add(calendarData);
 			}
 			
-			// 궇吏 궫 엯
+
 			for (int i = today_info.get("startDay"); i <= today_info.get("endDay"); i++) {
 				if (i == today_info.get("today")) {
 					calendarData = new DateData(String.valueOf(dateData.getYear()), String.valueOf(dateData.getMonth()),
@@ -135,10 +133,7 @@ public class MainController {
 			System.out.println(today_info.get("search_month"));
 			System.out.println(birthM);
 			System.out.println(birthD);
-			/*
-			 * if (Integer.parseInt(birthM) < 10) { System.out.println("if안"); birthM =
-			 * birthM.replace("0", ""); }
-			 */
+
 			m.addAttribute("id", id);// 파라미터 id를 "id" 이름으로 calendar.jsp ${id}에 전달
 			m.addAttribute("birthM", birthM);// 생일의 달 01 02 03 ~ 11 12, dateList는 1 2 3 4 ~ 11 12
 			m.addAttribute("birthD", birthD);// 생일의 일 calender.jsp로 보냄

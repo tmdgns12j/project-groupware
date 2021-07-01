@@ -11,10 +11,8 @@ import service.MemberLDao;
 @Controller
 @RequestMapping("/memberl/")
 public class MemberLController {
-
 	@Autowired
-	MemberLDao dao;
-	
+	MemberLDao dao;	
 	@RequestMapping("joinForm")
 	public String joinForm() {
 		System.out.println("joinForm");
