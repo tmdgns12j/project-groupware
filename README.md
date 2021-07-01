@@ -2,6 +2,18 @@
 
 model-controller-service-mapper
 
+model
+-Apv
+-Commute
+-DateData
+-Letter
+-Mail
+-Mail2
+-MemberL
+-Notice
+-Schedule
+
+
 Controller
 -ApvController : 전자결재
 -CalendarController : 달력
