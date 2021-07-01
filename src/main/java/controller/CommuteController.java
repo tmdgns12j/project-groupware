@@ -23,14 +23,14 @@ public class CommuteController {
 	@Autowired
 	CommuteDaoMybatis cdao;
 	
-	@RequestMapping("start")
+	@RequestMapping("start")//출근버튼 클릭시
 	public String start(HttpServletRequest request, HttpSession session,String STF_ID, Model m,Commute commute,String id) {
 		System.out.println("출근시작");
-		String login = (String) session.getAttribute("login");
+		String login = (String) session.getAttribute("login");//해당 사원의 출근시간을 저장하기위함
 		String msg = "fail";
 		String url = "../main/main";
 		Date starttm = cdao.starttime(login);
-		cdao.starttime(login);
+		cdao.starttime(login);//id의 출근시간 저장
 		if (cdao.starttime(login) != null) {
 			System.out.println("if후");
 			msg = "출근했네";
@@ -45,20 +45,20 @@ public class CommuteController {
 		return "alert";
 	}
 	
-	@RequestMapping("end")
+	@RequestMapping("end")//퇴근버튼클릭시
 	public String end(HttpServletRequest request, HttpSession session,String STF_ID, Model m,Commute commute,String id) {
 		System.out.println("퇴근시작");
 		String login = (String) session.getAttribute("login");
 		String msg = "fail";
 		String url = "../main/main";
-		Date endtm = cdao.endtime(login);
+		Date endtm = cdao.endtime(login);//퇴근
 		if (cdao.endtime(login) != null) {
 			System.out.println("if후");
 			msg = "집에가자";
 			url = "../main/main";
 		}
 		
-		SimpleDateFormat sf = new SimpleDateFormat("yyyy/MM/dd :hh/mm/ss");
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy/MM/dd :hh/mm/ss");//시간포멧(안씀)
 		
 		System.out.println("dd"+sf.format(endtm));
 		System.out.println("endtm : "+ endtm);
@@ -67,6 +67,6 @@ public class CommuteController {
 		m.addAttribute("url", url);
 		m.addAttribute("msg", msg);
 		
-		return "alert";/*tq*/
+		return "alert";
 	}
 }

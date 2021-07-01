@@ -21,28 +21,26 @@ import model.Mail2;
 import model.MemberL;
 
 @Repository
- public class MailDaoMybatis {
-	 private static final String ms="mapper.MailMapper.";
-	 private static Map map = new HashMap();
-	
-	 @Autowired
-	 SqlSessionTemplate  sqlSession;
-	 
+public class MailDaoMybatis {
+	private static final String ms="mapper.MailMapper.";
+	private static Map map = new HashMap();
+
+	@Autowired
+	SqlSessionTemplate  sqlSession;
+
 	public List<Mail> listmail() { // limit =3
-	   
-	      
-	      // ---------------------------------
-	      List<Mail>  listmail = sqlSession.selectList(ms+"list");
-	 
-	      
-	      return listmail;
-	   }
+
+
+		// ---------------------------------
+		List<Mail>  listmail = sqlSession.selectList(ms+"list");
+
+
+		return listmail;
+	}
 
 	public boolean mailinsert(Mail mail) {
-		System.out.println("sssssssssssssssssssssssssss");
 		int num = (Integer) sqlSession.selectOne(ms+"max");
 		mail.setNum(num);
-		System.out.println("ddddddddddddddddddddddddd");
 		int count = sqlSession.insert(ms+"mailinsert", mail);
 
 		if (count>0)
@@ -61,7 +59,7 @@ import model.MemberL;
 
 		return true;
 	}
-	
+
 	public boolean delete(String ajaxMsg) {
 		System.out.println("mapper전");
 		sqlSession.update(ms + "delete", ajaxMsg);
@@ -74,22 +72,22 @@ import model.MemberL;
 		System.out.println("mapper후");
 		return true;
 	}
- 
+
 	public MemberL mailselectOne(String STF_ID) {
 		System.out.println("STF_ID:"+STF_ID);
 		MemberL m = sqlSession.selectOne(ms+"selectOnestf_tb", STF_ID);
 		return m;		
 	}
-	
+
 	public void readcntadd(int num) {
 		sqlSession.update(ms + "readcntadd", num);
 	}
-	
+
 	public Mail2 selectOne(int num) {// eml_sq 편지번호 int
 		Mail2 mail = (Mail2) sqlSession.selectOne(ms + "selectOne", num);
 		return mail;
 	}
 }
- 
- 
- //end class
+
+
+//end class

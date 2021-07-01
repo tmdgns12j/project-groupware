@@ -12,11 +12,6 @@ public class DateData {
    String month = "";
    String date = "";
    String value = "";
-   // Š¤ì¼ ì¥  ì¶”ê  ‹œ  •„ ˜Òú˜ëŸ¼ 
-   //      1. ë³  ˆ˜ ì¶”ê 
-   //      2. getter/setter ì¶”ê 
-   //      3.  ƒ „±  ì¶”ê 
-   //             •˜ —¬  ‚¬ š© •˜×¼  ë³´ë‹¤  ¸ë¦¬í•˜ê³  ê¹¨ë— •˜ê²  ì½”ë“œë¥  ×ºŒë“¤  ˆ˜  ˆ ‹¤.
    String schedule = "";
    String schedule_detail = "";
 
@@ -68,15 +63,15 @@ public class DateData {
       this.schedule_detail = schedule_detail;
    }
 
-   //  ‚ ×Ùœì— ê´   ¨ œ  ‹¬  ¥  •ë³´ë   ê° ×Ù  Š” ×¼”ì„œ “œ
+   //  ³¯Â¥¿¡ °ü·ÃµÈ ´Ş·ÂÁ¤º¸¸¦ °¡Áü
    public Map<String, Integer> today_info(DateData dateData) {
-      //  ‚ ×Ù  ×ç˜ë¦° ”  •¨ ˆ˜ —  ‚½ ….
+      //  ³¯Â¥ Ä¶¸°´õ ÇÔ¼ö¿¡ »ğÀÔ.
       Map<String, Integer> today_Data = new HashMap<String, Integer>();
       Calendar cal = Calendar.getInstance();
       cal.set(Integer.parseInt(dateData.getYear()), Integer.parseInt(dateData.getMonth()), 1);
 
-      int startDay = cal.getMinimum(java.util.Calendar.DATE);
-      int endDay = cal.getActualMaximum(java.util.Calendar.DAY_OF_MONTH);
+      int startDay = cal.getMinimum(java.util.Calendar.DATE);//½ÃÀÛ³¯
+      int endDay = cal.getActualMaximum(java.util.Calendar.DAY_OF_MONTH);//¿ù¸»³¯Â¥
       int start = cal.get(java.util.Calendar.DAY_OF_WEEK);
       
       Calendar todayCal = Calendar.getInstance();
@@ -91,7 +86,7 @@ public class DateData {
 
       int today = -1;
       if (today_year == search_year && today_month == search_month) {
-         SimpleDateFormat dsdf = new SimpleDateFormat("dd");
+         SimpleDateFormat dsdf = new SimpleDateFormat("dd");//Æ÷¸ËÁöÁ¤
          today = Integer.parseInt(dsdf.format(todayCal.getTime()));
       }
       
@@ -99,9 +94,9 @@ public class DateData {
       
       Map<String, Integer> before_after_calendar = before_after_calendar(search_year,search_month);
       
-      // ‚ ×Ù  ê´   ¨
+      // ³¯Â¥°ü·Ã
       System.out.println("search_month : " + search_month);
-      // ×ç˜ë¦° ”  •¨ ˆ˜ end
+      
       today_Data.put("start", start);
       today_Data.put("startDay", startDay);
       today_Data.put("endDay", endDay);
@@ -115,7 +110,7 @@ public class DateData {
       return today_Data;
    }
    
-   // ´  „ ‹¬  ‹¤ Œ ‹¬ ë°   ´  „ …„ „  ‹¤ Œ …„ „
+   // ÀÌÀü´Ş ´ÙÀ½´Ş , ÀÌÀü³âµµ ´ÙÀ½³âµµ
    private Map<String, Integer> before_after_calendar(int search_year, int search_month){
       Map<String, Integer> before_after_data = new HashMap<String, Integer>();
       int before_year = search_year;
@@ -124,11 +119,11 @@ public class DateData {
       int after_month = search_month+1;
 
       if(before_month<0){
-         before_month=11;
+         before_month=11;//0=1¿ù 11=12¿ù 1->12·Î ³Ñ¾î°¡´ÂºÎºĞ
          before_year=search_year-1;
       }
       
-      if(after_month>11){
+      if(after_month>11){//0=1¿ù 11=12¿ù 12->1·Î ³Ñ¾î°¡´ÂºÎºĞ
          after_month=0;
          after_year=search_year+1;
       }
@@ -141,7 +136,7 @@ public class DateData {
       return before_after_data;
    }
    
-   //  Š¤ì¼ ì¤   ‚¬ š© ‹œ  ‚¬ š©    ƒ „± 
+   //  ½ºÄÉÁÙ¿ë »ç¿ë½Ã »ı¼ºÀÚ ¾Æ¸¶¸ø¾¸
    public DateData(String year, String month, String date, String value, String schedule, String schedule_detail) {
 
       this.year = year;
@@ -153,7 +148,7 @@ public class DateData {
 
    }
 
-   //  ‹¬  ¥×º   ‚¬ š© ‹œ  ‚¬ š©    ƒ „± 
+   //  ´Ş·Â¸¸»ç¿ë½Ã *******************************»ç¿ë
    public DateData(String year, String month, String date, String value) {
       if ((month != null && month != "") && (date != null && date != "")) {
          this.year = year;
