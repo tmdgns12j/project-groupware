@@ -9,8 +9,8 @@
 </select>
 
 <insert id="mailinsert" parameterType="mail">
-insert into mail(naverid,naverpw, recipient, title, contents)
-             values(#{naverid},#{naverpw}, #{recipient}, #{title},  
+insert into mail(num,naverid,naverpw, recipient, title, contents)
+             values(#{num},#{naverid},#{naverpw}, #{recipient}, #{title},  
              #{contents})
 </insert>
 

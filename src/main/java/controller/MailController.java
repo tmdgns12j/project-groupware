@@ -283,11 +283,11 @@ public class MailController {
 	
 	@RequestMapping("mailw")
 	public ModelAndView mailw(Mail mail,HttpSession session, Model m) {
+		mailSend(mail);
 		if(dao.mailinsert(mail)) {
 			System.out.println("success");
 		}
 		ModelAndView mav = new ModelAndView("/mail/mailSuccess");
-		mailSend(mail);
 		return mav;
 	}
 	

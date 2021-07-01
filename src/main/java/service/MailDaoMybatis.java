@@ -39,9 +39,10 @@ import model.MemberL;
 	   }
 
 	public boolean mailinsert(Mail mail) {
-		
+		System.out.println("sssssssssssssssssssssssssss");
 		int num = (Integer) sqlSession.selectOne(ms+"max");
 		mail.setNum(num);
+		System.out.println("ddddddddddddddddddddddddd");
 		int count = sqlSession.insert(ms+"mailinsert", mail);
 
 		if (count>0)

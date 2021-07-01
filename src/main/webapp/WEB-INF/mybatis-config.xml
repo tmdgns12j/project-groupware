@@ -12,7 +12,6 @@
       <typeAlias type="model.Notice" alias="notice" />
       <typeAlias type="model.Commute" alias="commute" />
       <typeAlias type="model.Schedule" alias="schedule" />
-
    </typeAliases>
    
    <mappers>
