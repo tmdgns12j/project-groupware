@@ -1,6 +1,4 @@
 /controller/
-/data/
-/go/
+/service/
 /mapper/
 /model/
-/service/

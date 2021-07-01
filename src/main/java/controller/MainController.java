@@ -21,12 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import data.DateData;
-import model.Board;
 import model.Letter;
 import model.MemberL;
 import model.Notice;
 import model.Schedule;
-import service.BoardDaoMybatis;
 import service.CalendarDao;
 import service.LetterDaoMybatis;
 import service.NoticeDaoMybatis;

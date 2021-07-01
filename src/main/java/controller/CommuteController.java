@@ -28,7 +28,7 @@ public class CommuteController {
 		System.out.println("출근시작");
 		String login = (String) session.getAttribute("login");
 		String msg = "fail";
-		String url = "writeForm";
+		String url = "../main/main";
 		Date starttm = cdao.starttime(login);
 		cdao.starttime(login);
 		if (cdao.starttime(login) != null) {
@@ -50,7 +50,7 @@ public class CommuteController {
 		System.out.println("퇴근시작");
 		String login = (String) session.getAttribute("login");
 		String msg = "fail";
-		String url = "writeForm";
+		String url = "../main/main";
 		Date endtm = cdao.endtime(login);
 		if (cdao.endtime(login) != null) {
 			System.out.println("if후");

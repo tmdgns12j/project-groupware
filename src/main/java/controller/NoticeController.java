@@ -201,9 +201,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import service.BoardDaoMybatis;
+
 import service.NoticeDaoMybatis;
-import model.Board;
 import model.Notice;
 
 @Controller
