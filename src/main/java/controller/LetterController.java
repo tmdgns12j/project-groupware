@@ -27,7 +27,7 @@ import service.LetterDaoMybatis;
 @RequestMapping("/letter/")
 public class LetterController {
 
-	@Autowired
+	@Autowired//DI
 	LetterDaoMybatis dao;
 	@Autowired
 	CalendarDao cdao;

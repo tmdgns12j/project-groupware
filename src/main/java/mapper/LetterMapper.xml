@@ -88,13 +88,6 @@
 		delete from schedule_tb where schedule_sq = #{value}
 	</delete>
 	
-	<!-- <insert id="updateSchedule" parameterType="schedule">
-		update schedule_tb
-		set
-		schedule_name=#{schedule_name},schedule_date=#{schedule_date}
-		where schedule_name=#{schedule_name}
-	</insert> -->
-	
 	<select id="selectOneschedule_tb" resultType="schedule"
 		parameterType="string">
 		select * from schedule_tb where schedule_sq = #{value}
