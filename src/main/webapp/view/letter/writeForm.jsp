@@ -45,7 +45,6 @@ function letter_submit() {
 enctype="multipart/form-data" name="f"><!-- controller -->
   <h3>쪽지쓰기</h3>
   <table class="w3-table-all table table-hover">
-   <caption>writeForm 게시판 글쓰기</caption>
    
    <!-- <tr><td>편지번호</td><td><input type="text" name="EML_SQ"></td></tr> -->
    <tr><td>받는사원</td><td><input type="text" class="text" name="STF_RCV_ID" value=${letter.STF_RCV_ID }></td></tr>
